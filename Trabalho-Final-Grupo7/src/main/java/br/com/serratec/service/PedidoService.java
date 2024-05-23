@@ -26,15 +26,5 @@ public class PedidoService {
 		return repository.findAll(pageable);
 	}
 	
-	public Page<Pedido> buscarPorFaixaSalarial(Double valorInicial, Double valorFinal, Pageable pageable) {
-		
-		Page<Pedido> pedidos = repository.findBySalarioBetween(valorInicial, valorFinal, pageable);
-		return pedidos;
-	}
 	
-	public Page<Pedido> buscarPorNome(String paramNome, Pageable pageable) {
-		
-		Page<Pedido> pedidos = repository.findByNomeContainingIgnoreCase(paramNome, pageable);
-		return pedidos;
-	}
 }

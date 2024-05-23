@@ -1,12 +1,17 @@
 package br.com.serratec.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.serratec.enums.StatusEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Pedido {
@@ -17,6 +22,20 @@ public class Pedido {
 	private LocalDate dataPedido;
 	private StatusEnum status;
 	
+	
+	@JsonManagedReference
+	@OneToMany(mappedBy = "pedido")
+    private Set<PedidoProduto> pedidoProdutos = new HashSet<>();
+	
+	
+	public Set<PedidoProduto> getPedidoProdutos() {
+		return pedidoProdutos;
+	}
+
+	public void setPedidoProdutos(Set<PedidoProduto> pedidoProdutos) {
+		this.pedidoProdutos = pedidoProdutos;
+	}
+
 	public Long getId() {
 		return id;
 	}

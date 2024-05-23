@@ -18,25 +18,12 @@ public class CategoriaController {
 
 	@Autowired
 	private CategoriaService service;
-	
-	@GetMapping("/pagina")
-	public Page<Categoria> listarPorPagina(@PageableDefault(sort = "nome", page = 1, size = 10) 
-	Pageable pageable) {
-		
-		return service.listarPorPagina(pageable);
+//	
+//	@GetMapping("/pagina")
+//	public Page<Categoria> listarPorPagina(@PageableDefault(sort = "nome", page = 1, size = 10) 
+//	Pageable pageable) {
+//		
+//		return service.listarPorPagina(pageable);
 	}
 	
-	@GetMapping("/salario")
-	public Page<Categoria> buscarPorFaixaSalarial(@RequestParam(defaultValue = "0") Double valorInicial, 
-			@RequestParam(defaultValue = "100000") Double valorFinal, Pageable pageable) {
-		
-		return service.buscarPorFaixaSalarial(valorInicial, valorFinal, pageable);
-	}
-	
-	@GetMapping("/nome")
-	public Page<Categoria> buscarPorNome(@RequestParam String paramNome, 
-			Pageable pageable) {
-		
-		return service.buscarPorNome(paramNome, pageable);
-	}
-}
+

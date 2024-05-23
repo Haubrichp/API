@@ -1,11 +1,16 @@
 package br.com.serratec.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto {
@@ -19,6 +24,21 @@ public class Produto {
 	private LocalDate dataCadastro;
 	private Double valor;
 	
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "produto")
+    private Set<PedidoProduto> pedidoProdutos = new HashSet<>();
+	
+	
+	
+	public Set<PedidoProduto> getPedidoProdutos() {
+		return pedidoProdutos;
+	}
+
+	public void setPedidoProdutos(Set<PedidoProduto> pedidoProdutos) {
+		this.pedidoProdutos = pedidoProdutos;
+	}
+
 	public Long getId() {
 		return id;
 	}

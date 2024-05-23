@@ -21,20 +21,6 @@ public class CategoriaService {
 		return repository.findAll();
 	}
 	
-	public Page<Categoria> listarPorPagina(Pageable pageable) {
-		
-		return repository.findAll(pageable);
-	}
+
 	
-	public Page<Categoria> buscarPorFaixaSalarial(Double valorInicial, Double valorFinal, Pageable pageable) {
-		
-		Page<Categoria> categorias = repository.findBySalarioBetween(valorInicial, valorFinal, pageable);
-		return categorias;
-	}
-	
-	public Page<Categoria> buscarPorNome(String paramNome, Pageable pageable) {
-		
-		Page<Categoria> categorias = repository.findByNomeContainingIgnoreCase(paramNome, pageable);
-		return categorias;
-	}
 }

@@ -26,17 +26,5 @@ public class PedidoController {
 		return service.listarPorPagina(pageable);
 	}
 	
-	@GetMapping("/salario")
-	public Page<Pedido> buscarPorFaixaSalarial(@RequestParam(defaultValue = "0") Double valorInicial, 
-			@RequestParam(defaultValue = "100000") Double valorFinal, Pageable pageable) {
-		
-		return service.buscarPorFaixaSalarial(valorInicial, valorFinal, pageable);
-	}
 	
-	@GetMapping("/nome")
-	public Page<Pedido> buscarPorNome(@RequestParam String paramNome, 
-			Pageable pageable) {
-		
-		return service.buscarPorNome(paramNome, pageable);
-	}
 }

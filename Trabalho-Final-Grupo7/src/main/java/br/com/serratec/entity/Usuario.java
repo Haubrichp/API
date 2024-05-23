@@ -1,11 +1,17 @@
 package br.com.serratec.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.validator.constraints.br.CPF;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 
 @Entity
@@ -22,6 +28,26 @@ public class Usuario {
 	@CPF
 	private String cpf;
 	
+	
+	@OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
+
+	public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) {
+		this.usuarioPerfis = usuarioPerfis;
+	}
+	
+/*
+	@Override
+	public String toString() {
+		return "nome:" + nome +"email:" +email +"\n\n\n";
+		
+	*/
+	
+	public Set<UsuarioPerfil> getUsuarioPerfis() {
+		return usuarioPerfis;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

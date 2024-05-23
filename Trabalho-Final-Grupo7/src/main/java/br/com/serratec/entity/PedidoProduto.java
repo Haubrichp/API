@@ -1,36 +1,57 @@
 package br.com.serratec.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "pedido_produto")
 public class PedidoProduto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@EmbeddedId
+	private UsuarioPerfilPK id;
+
+	@ManyToOne
+	@JoinColumn(name = "id_pedido", referencedColumnName = "id")
+	private Pedido pedido;
+
+	@ManyToOne
+	@JoinColumn(name = "id_produto", referencedColumnName = "id")
+	private Produto produto;
+
+	@Column(nullable = false)
 	private Integer quantidade;
+
+	@Column(nullable = false)
 	private Double valorUnitario;
 	
-	@ManyToMany
-	@JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "id_pedido"),
-	inverseJoinColumns =  @JoinColumn(name = "id_produto"))
-	private Set<PedidoProduto> pp = new HashSet<>();
+	
 
-	public Long getId() {
+	public UsuarioPerfilPK getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UsuarioPerfilPK id) {
 		this.id = id;
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public Integer getQuantidade() {
@@ -47,13 +68,5 @@ public class PedidoProduto {
 
 	public void setValorUnitario(Double valorUnitario) {
 		this.valorUnitario = valorUnitario;
-	}
-
-	public Set<PedidoProduto> getPp() {
-		return pp;
-	}
-
-	public void setPp(Set<PedidoProduto> pp) {
-		this.pp = pp;
 	}
 }
