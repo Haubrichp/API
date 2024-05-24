@@ -20,34 +20,34 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.entity.Categoria;
-import br.com.serratec.entity.Produto;
-import br.com.serratec.entity.Produto;
-import br.com.serratec.service.ProdutoService;
+import br.com.serratec.entity.Funcionario;
+import br.com.serratec.entity.Funcionario;
+import br.com.serratec.service.FuncionarioService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/produtos")
-public class ProdutoController {
+@RequestMapping("/funcionarios")
+public class FuncionarioController {
 
 	@Autowired
-	private ProdutoService service;
+	private FuncionarioService service;
 	
 	@GetMapping
-	public List<Produto> listar() {
+	public List<Funcionario> listar() {
 		return service.listar();
 	}	
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Produto inserir(@Valid @RequestBody Produto produto) {
-		return service.inserir(produto);
+	public Funcionario inserir(@Valid @RequestBody Funcionario funcionario) {
+		return service.inserir(funcionario);
 	}
 	
 	@PutMapping("{id}")
-	public ResponseEntity<Produto> atualizar(Long id ,@RequestBody Produto produto) {
+	public ResponseEntity<Funcionario> atualizar(Long id ,@RequestBody Funcionario funcionario) {
 		if (service.equals(id)) {
-	        service.atualizar(id, produto);
-	        return service.atualizar(id, produto);
+	        service.atualizar(id, funcionario);
+	        return service.atualizar(id, funcionario);
 	    }
 	    return ResponseEntity.notFound().build();
 	}

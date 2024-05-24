@@ -1,9 +1,11 @@
 package br.com.serratec.entity;
 
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 
 @Entity
 public class Categoria {
@@ -13,6 +15,8 @@ public class Categoria {
 	private Long id;
 	private String nome;
 	private String descricao;
+	
+	
 	
 	public Long getId() {
 		return id;

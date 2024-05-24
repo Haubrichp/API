@@ -11,31 +11,31 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import br.com.serratec.entity.Usuario;
-import br.com.serratec.entity.Usuario;
-import br.com.serratec.repository.UsuarioRepository;
+import br.com.serratec.entity.Funcionario;
+import br.com.serratec.entity.Funcionario;
+import br.com.serratec.repository.FuncionarioRepository;
 import jakarta.validation.Valid;
 
 @Service
-public class UsuarioService {
+public class FuncionarioService {
 
 	@Autowired
-	private UsuarioRepository repository;
+	private FuncionarioRepository repository;
 
-	public List<Usuario> listar() {
+	public List<Funcionario> listar() {
 
 		return repository.findAll();
 	}
 
-	public Usuario inserir(@Valid @RequestBody Usuario usuario) {
-		return repository.save(usuario);
+	public Funcionario inserir(@Valid @RequestBody Funcionario funcionario) {
+		return repository.save(funcionario);
 
 	}
 
-	public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuario) {
+	public ResponseEntity<Funcionario> atualizar(@PathVariable Long id, @Valid @RequestBody Funcionario funcionario) {
 		if (repository.existsById(id)) {
-			usuario.setId(id);
-			return ResponseEntity.ok(repository.save(usuario));
+			funcionario.setId(id);
+			return ResponseEntity.ok(repository.save(funcionario));
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -43,9 +43,9 @@ public class UsuarioService {
 	public ResponseEntity<String> deletar(@PathVariable Long id) {
 		if (repository.existsById(id)) {
 			repository.deleteById(id);
-			return ResponseEntity.ok("Usuario com id " + id + " foi excluído com sucesso.");
+			return ResponseEntity.ok("Funcionario com id " + id + " foi excluído com sucesso.");
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario com id " + id + " não encontrado.");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Funcionario com id " + id + " não encontrado.");
 	}
 
 }

@@ -28,14 +28,7 @@ public class Usuario {
 	@CPF
 	private String cpf;
 	
-	
-	@OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
 
-	public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) {
-		this.usuarioPerfis = usuarioPerfis;
-	}
-	
 /*
 	@Override
 	public String toString() {
@@ -43,11 +36,6 @@ public class Usuario {
 		
 	*/
 	
-	public Set<UsuarioPerfil> getUsuarioPerfis() {
-		return usuarioPerfis;
-	}
-
-
 	public Long getId() {
 		return id;
 	}
