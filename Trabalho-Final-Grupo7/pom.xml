@@ -74,12 +74,6 @@
 			<version>2.3.0</version>
 		</dependency>
 
-
-		<dependency>
-			<groupId>br.com.serratec</groupId>
-			<artifactId>aula-02-orm</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>

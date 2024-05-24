@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import br.com.serratec.enums.StatusEnum;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,11 +24,13 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate dataPedido;
+	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
 	@JsonBackReference
 	@ManyToOne
 	private Usuario usuario;
+	
 
 	@ManyToMany
 	@JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))

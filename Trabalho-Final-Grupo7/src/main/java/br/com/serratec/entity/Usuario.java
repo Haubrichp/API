@@ -1,17 +1,15 @@
 package br.com.serratec.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.hibernate.validator.constraints.br.CPF;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 
 @Entity
@@ -28,6 +26,11 @@ public class Usuario {
 	@CPF
 	private String cpf;
 	
+	
+	@JoinColumn(name = "id_endereco")
+	@ManyToOne
+	@JsonBackReference
+	private Endereco endereco;
 
 /*
 	@Override
@@ -36,10 +39,19 @@ public class Usuario {
 		
 	*/
 	
+	
 	public Long getId() {
 		return id;
 	}
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
