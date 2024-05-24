@@ -24,6 +24,7 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate dataPedido;
+	
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
