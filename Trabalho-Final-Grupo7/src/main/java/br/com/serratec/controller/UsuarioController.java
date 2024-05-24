@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.serratec.dto.UsuarioResponseDTO;
 import br.com.serratec.entity.Categoria;
 import br.com.serratec.entity.Usuario;
 import br.com.serratec.entity.Usuario;
@@ -39,7 +40,7 @@ public class UsuarioController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Usuario inserir(@Valid @RequestBody Usuario usuario) {
+	public UsuarioResponseDTO inserir(@Valid @RequestBody UsuarioResponseDTO usuario) {
 		return service.inserir(usuario);
 	}
 	
