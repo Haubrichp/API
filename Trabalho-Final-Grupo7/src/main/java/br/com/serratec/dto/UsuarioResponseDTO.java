@@ -34,8 +34,11 @@ public class UsuarioResponseDTO {
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.cpf = usuario.getCpf();
+<<<<<<< HEAD
         
     
+=======
+>>>>>>> 2b05fc0fb7c55ba48744ede5468c204070921842
     }
 
    
