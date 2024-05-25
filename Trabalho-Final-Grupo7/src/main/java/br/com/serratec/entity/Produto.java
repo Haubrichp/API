@@ -14,7 +14,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Produto {
@@ -23,20 +25,21 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank(message= "Nome não pode ser nulo ou vazio.")
-	@Column(length = 100)
+	@Size(max = 150, message = "O Nome não pode ter mais de 150 caracteres")
+	@Size(min= 2, message = "O Nome não pode ter menos de 2 caracteres" )
 	private String nome;
 	@NotBlank(message= "Descrição não pode ser nulo ou vazio.")
-	@Column(length = 300)
+	@Size(max = 300, message = "A descrição não pode ter mais de 300 caracteres")
 	private String descricao;
-	@NotBlank
+	@NotNull(message= "Quantidade de estoque não pode ser nulo ou vazio.")
 	@Min(value = 0, message = "A quantidade não pode ser negativa")
     @Max(value = 1000, message = "A quantidade máxima permitida é 1000")
 	private Double quantidadeEstoque;
 	@PastOrPresent(message = "Data do pedido é uma data futura, atualizar para data atual.")
 	private LocalDate dataCadastro;
-	@NotBlank(message= "Valor não pode ser nulo ou vazio.")
-	@Min(value=0, message = "A quantidade não pode ser negativa" )
-	@Max(value = 10000, message = "A quantidade máxima permitida é 10000")
+	@NotNull(message= "Valor não pode ser nulo ou vazio.")
+	@Min(value = 0, message = "O valor não pode ser negativo" )
+	@Max(value = 10000, message = "O Valor máximo de um produto é de 10000")
 	private Double valor;
 
 	@JoinColumn(name = "id_categoria")

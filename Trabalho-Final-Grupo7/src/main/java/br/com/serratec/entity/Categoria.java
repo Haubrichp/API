@@ -1,12 +1,11 @@
 package br.com.serratec.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 
 @Entity
@@ -16,10 +15,11 @@ public class Categoria {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank(message= "Nome não pode ser nulo ou vazio.")
-	@Column(length = 100)
+	@Size(max = 150, message = "O Nome não pode ter mais de 150 caracteres")
+	@Size(min= 2, message = "O Nome não pode ter menos de 2 caracteres" )
 	private String nome;
 	@NotBlank(message= "Descrição não pode ser nulo ou vazio.")
-	@Column(length = 300)
+	@Size(max = 300, message = "A descrição não pode ter mais de 300 caracteres")
 	private String descricao;
 	
 	

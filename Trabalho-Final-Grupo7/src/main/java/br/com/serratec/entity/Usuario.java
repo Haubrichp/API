@@ -24,7 +24,8 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank(message= "Nome não pode ser nulo ou vazio.")
-	@Column(length = 100)
+	@Size(max = 150, message = "O Nome não pode ter mais de 150 caracteres")
+	@Size(min= 2, message = "O Nome não pode ter menos de 2 caracteres" )
 	private String nome;
 	
 	private String telefone;
