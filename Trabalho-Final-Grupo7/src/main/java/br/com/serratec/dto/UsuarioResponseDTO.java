@@ -21,6 +21,8 @@ public class UsuarioResponseDTO {
     private String telefone;
 
     @NotBlank(message = "A senha é obrigatória")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,}$",
+    message = "A senha deve conter pelo de 8 a 16 caracteres, incluindo letras maiúsculas, minúsculas e números.")
     private String senha;
 
     @Email(message = "Email inválido")
