@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 public class Pedido {
@@ -23,6 +24,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@PastOrPresent(message = "Data do pedido é uma data futura, atualizar para data atual.")
 	private LocalDate dataPedido;
 	
 	@Enumerated(EnumType.STRING)

@@ -1,10 +1,13 @@
 package br.com.serratec.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Funcionario {
@@ -12,9 +15,13 @@ public class Funcionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message= "Nome não pode ser nulo ou vazio.")
+	@Column(length = 100)
     private String nome;
     @Email
     private String email;
+    @NotBlank
+    @Size(min= 2, max =10)
     private String senha;
 
     public Long getId() {

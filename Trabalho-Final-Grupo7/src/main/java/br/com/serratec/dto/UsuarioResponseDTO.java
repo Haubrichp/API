@@ -33,6 +33,8 @@ public class UsuarioResponseDTO {
         this.telefone = usuario.getTelefone();
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
+        this.cpf = usuario.getCpf();
+        
     
     }
 

@@ -42,10 +42,11 @@ public class UsuarioService {
 		u.setTelefone(usuario.getTelefone());
 		u.setEmail(usuario.getEmail());
 		u.setCpf(usuario.getCpf());
+		u.setSenha(usuario.getSenha());
 	
 		
 		repository.save(u);
-        // mailConfig.sendMail(u.getEmail(),"Cadastro de Usuário no Sistema" ,u.toString());
+        mailConfig.sendMail(u.getEmail(),"Cadastro de Usuário no Sistema" ,u.toString());
 		return new UsuarioResponseDTO(u);
 
 	}
