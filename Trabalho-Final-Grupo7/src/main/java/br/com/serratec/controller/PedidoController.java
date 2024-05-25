@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.serratec.entity.Categoria;
 import br.com.serratec.entity.Pedido;
 import br.com.serratec.service.PedidoService;
 import jakarta.validation.Valid;
