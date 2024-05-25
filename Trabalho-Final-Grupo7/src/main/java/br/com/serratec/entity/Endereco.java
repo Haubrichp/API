@@ -1,9 +1,13 @@
 package br.com.serratec.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Endereco {
@@ -12,13 +16,29 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String rua;
+	@NotBlank(message = "CEP é obrigatório")
+	private String cep;
+	
+	@NotBlank(message = "Logradouro é obrigatório")
+	private String logradouro;
+	 
+	@NotBlank(message = "Número é obrigatório")
 	private String numero;
+	
+	@NotBlank(message = "Bairro é obrigatório")
 	private String bairro;
-	private String cidade;
-	private String estado;
+	
+	@NotBlank(message = "Localidade é obrigatória")
+	private String localidade;
+	
+	@NotBlank(message = "UF é obrigatório")
+	private String uf;
+	
 	private String complemento;
-	private Integer cep;
+	
+	@OneToOne(mappedBy = "endereco")
+    @JsonBackReference
+    private Usuario usuario;
 	
 	public Long getId() {
 		return id;
@@ -28,12 +48,20 @@ public class Endereco {
 		this.id = id;
 	}
 	
-	public String getRua() {
-		return rua;
+	public String getCep() {
+		return cep;
 	}
 	
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	
+	public String getLogradouro() {
+		return logradouro;
+	}
+	
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 	
 	public String getNumero() {
@@ -52,20 +80,20 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 	
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 	
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
 	}
 	
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 	
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 	
 	public String getComplemento() {
@@ -74,13 +102,5 @@ public class Endereco {
 	
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
-	}
-	
-	public Integer getCep() {
-		return cep;
-	}
-	
-	public void setCep(Integer cep) {
-		this.cep = cep;
 	}
 }

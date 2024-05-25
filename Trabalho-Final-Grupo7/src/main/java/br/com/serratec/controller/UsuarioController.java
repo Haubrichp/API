@@ -31,13 +31,21 @@ public class UsuarioController {
 	@GetMapping
 	public List<Usuario> listar() {
 		return service.listar();
-	}	
-	
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public UsuarioResponseDTO inserir(@Valid @RequestBody UsuarioResponseDTO usuario) throws MessagingException {
-		return service.inserir(usuario);
 	}
+	
+	@PostMapping("/enderecos")
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) throws MessagingException {
+        Usuario usuarioSalvo = service.inser(usuario);
+        return ResponseEntity.ok(usuarioSalvo);
+    }
+
+//  Feito primeiramente pelo Felipe para comportar o envio do e-mail.
+//	
+//	@PostMapping
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public UsuarioResponseDTO inserir(@Valid @RequestBody UsuarioResponseDTO usuario) throws MessagingException {
+//		return service.inserir(usuario);
+//	}
 	
 	@PutMapping("{id}")
 	public ResponseEntity<Usuario> atualizar(Long id ,@RequestBody Usuario usuario) {

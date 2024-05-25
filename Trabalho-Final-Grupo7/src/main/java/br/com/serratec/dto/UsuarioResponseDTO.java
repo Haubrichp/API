@@ -1,5 +1,6 @@
 package br.com.serratec.dto;
 
+import br.com.serratec.entity.Endereco;
 import br.com.serratec.entity.Usuario;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class UsuarioResponseDTO {
 
@@ -31,6 +33,29 @@ public class UsuarioResponseDTO {
 
     @CPF(message = "CPF inválido")
     private String cpf;
+    
+    @NotBlank(message = "CEP é obrigatório")
+	private String cep;
+	
+	@NotBlank(message = "Logradouro é obrigatório")
+	private String logradouro;
+	 
+	@NotBlank(message = "Número é obrigatório")
+	private String numero;
+	
+	@NotBlank(message = "Bairro é obrigatório")
+	private String bairro;
+	
+	@NotBlank(message = "Localidade é obrigatória")
+	private String localidade;
+	
+	@NotBlank(message = "UF é obrigatório")
+	private String uf;
+	
+	private String complemento;
+	
+	@Autowired
+	private Endereco endereco;
 
     public UsuarioResponseDTO() {
     }
@@ -42,7 +67,13 @@ public class UsuarioResponseDTO {
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.cpf = usuario.getCpf();
-
+        this.cep = usuario.getEndereco().getCep();
+        this.logradouro = usuario.getEndereco().getLogradouro();
+        this.numero = usuario.getEndereco().getNumero();
+        this.bairro = usuario.getEndereco().getBairro();
+        this.localidade = usuario.getEndereco().getLocalidade();
+        this.uf = usuario.getEndereco().getUf();
+        this.complemento = usuario.getEndereco().getComplemento(); 
     }
 
    
@@ -93,6 +124,70 @@ public class UsuarioResponseDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+
+	public String getLocalidade() {
+		return localidade;
+	}
+
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
+	}
+
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 }
 
 		
