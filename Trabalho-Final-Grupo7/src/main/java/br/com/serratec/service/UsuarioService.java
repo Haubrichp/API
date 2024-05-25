@@ -32,7 +32,7 @@ public class UsuarioService {
 	}
 
 	@Transactional
-	public UsuarioResponseDTO inserir(UsuarioResponseDTO usuario) {
+	public UsuarioResponseDTO inserir(UsuarioResponseDTO usuario) throws MessagingException {
 		if (repository.findByEmail(usuario.getEmail()) != null) {
 			throw new EmailException("Email Já Existe na Base");
 		}
@@ -42,15 +42,11 @@ public class UsuarioService {
 		u.setTelefone(usuario.getTelefone());
 		u.setEmail(usuario.getEmail());
 		u.setCpf(usuario.getCpf());
-<<<<<<< HEAD
+
 		u.setSenha(usuario.getSenha());
 	
-		
-		repository.save(u);
-        mailConfig.sendMail(u.getEmail(),"Cadastro de Usuário no Sistema" ,u.toString());
-		return new UsuarioResponseDTO(u);
-=======
->>>>>>> 2b05fc0fb7c55ba48744ede5468c204070921842
+	
+
 
 		repository.save(u);
 
@@ -59,11 +55,11 @@ public class UsuarioService {
 		context.setVariable("nome", u.getNome());
 
 		
-//		try {
-//			mailConfig.sendMail(u.getEmail(), "Cadastro de Usuário no Sistema", "emailTemplate", context);
-//		} catch (MessagingException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			mailConfig.sendMail(u.getEmail(), "Cadastro de Usuário no Sistema", "emailTemplate", context);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 
 		return new UsuarioResponseDTO(u);
 	}
@@ -83,4 +79,5 @@ public class UsuarioService {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario com id " + id + " não encontrado.");
 	}
+	
 }

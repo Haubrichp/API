@@ -1,8 +1,11 @@
 package br.com.serratec.dto;
 
 import br.com.serratec.entity.Usuario;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 public class UsuarioResponseDTO {
@@ -11,7 +14,10 @@ public class UsuarioResponseDTO {
 
     @NotBlank(message = "O nome é obrigatório")
     private String nome;
-
+    
+    @NotBlank(message= "Telefone não pode ser nulo ou vazio.")
+	@Column(length = 100)
+	@Pattern(regexp= "^(\\([1-9]{2}\\))?\\s?(?:[2-8]|9[0-9])[0-9]{3}(?:-?[0-9]{4})$", message = "Telefone não está no padrão, tente no formato (xx) xxxxx-xxxx!")
     private String telefone;
 
     @NotBlank(message = "A senha é obrigatória")
@@ -34,11 +40,7 @@ public class UsuarioResponseDTO {
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
         this.cpf = usuario.getCpf();
-<<<<<<< HEAD
-        
-    
-=======
->>>>>>> 2b05fc0fb7c55ba48744ede5468c204070921842
+
     }
 
    

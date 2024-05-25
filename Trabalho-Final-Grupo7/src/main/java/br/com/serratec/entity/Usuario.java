@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import br.com.serratec.exception.TelefoneException;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,9 +26,7 @@ public class Usuario {
 	@NotBlank(message= "Nome não pode ser nulo ou vazio.")
 	@Column(length = 100)
 	private String nome;
-	@NotBlank(message= "Telefone não pode ser nulo ou vazio.")
-	@Column(length = 100)
-	@Pattern(regexp = "^\\([1-9]{2}\\) (?:[2-8]|9[0-9])[0-9]{3}-[0-9]{4}$", message = "Telefone inválido, tente utilizar esse formato: (xx) xxxxx-xxxx")
+	
 	private String telefone;
 	@NotBlank
 	@Size(min= 2, max =10)

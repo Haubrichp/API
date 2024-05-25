@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.serratec.dto.UsuarioResponseDTO;
 import br.com.serratec.entity.Usuario;
 import br.com.serratec.service.UsuarioService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -34,7 +35,7 @@ public class UsuarioController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UsuarioResponseDTO inserir(@Valid @RequestBody UsuarioResponseDTO usuario) {
+	public UsuarioResponseDTO inserir(@Valid @RequestBody UsuarioResponseDTO usuario) throws MessagingException {
 		return service.inserir(usuario);
 	}
 	
