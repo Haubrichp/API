@@ -12,6 +12,7 @@ import br.com.serratec.configuration.MailConfig;
 import br.com.serratec.entity.Endereco;
 import br.com.serratec.entity.Usuario;
 import br.com.serratec.exception.EmailException;
+import br.com.serratec.exception.ResourceNotFoundException;
 import br.com.serratec.repository.UsuarioRepository;
 import jakarta.mail.MessagingException;
 import jakarta.transaction.Transactional;
@@ -39,7 +40,7 @@ public class UsuarioService {
 	}
 	
 	@Transactional
-    public Usuario inser(Usuario usuario) throws MessagingException {
+    public Usuario inserir(Usuario usuario) throws MessagingException {
 
 		if (repository.findByEmail(usuario.getEmail()) != null) {
 			throw new EmailException("Email Já Existe na Base");
@@ -92,12 +93,12 @@ public class UsuarioService {
 //		return new UsuarioResponseDTO(u);
 //	}
 	
-	public ResponseEntity<Usuario> atualizar(Long id, @Valid @RequestBody Usuario usuario) {
+	public Usuario atualizar(Long id, @Valid @RequestBody Usuario usuario) {
 		if (repository.existsById(id)) {
 			usuario.setId(id);
-			return ResponseEntity.ok(repository.save(usuario));
+			return repository.save(usuario);
 		}
-		return ResponseEntity.notFound().build();
+		throw new ResourceNotFoundException("Cliente não encontrado");
 	}
 
 	public ResponseEntity<String> deletar(Long id) {
